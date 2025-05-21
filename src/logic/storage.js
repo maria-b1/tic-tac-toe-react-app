@@ -19,8 +19,8 @@ function loader(key) {
     try {
       if (item) return validator(JSON.parse(item))
     } catch (e) {
-    // ignore JSON parsing errors or invalid data in storage
-  }
+      // ignore JSON parsing errors or invalid data in storage
+    }
     return fallbackSupplier()
   }
 }

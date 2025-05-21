@@ -54,7 +54,6 @@ body {
   text-align: center;
 }
 
-
 .App {
   position: relative;
   display: flex;
@@ -80,7 +79,7 @@ body {
   transform: rotate(-45deg);
   border-radius: 40%;
   border: 2px solid #999999;
-  box-shadow: 0 0 0.8rem .4rem aquamarine;
+  box-shadow: 0 0 0.8rem 0.4rem aquamarine;
   background: rgba(255, 255, 255, 0.87);
 }
 
@@ -110,7 +109,6 @@ body {
   color: aquamarine;
 }
 
-
 .App .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -122,10 +120,10 @@ body {
 .App .board .tile {
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.87);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: rgba(255, 255, 255, 0.87);
   background-color: #1a1a1a;
-  box-shadow: 0 0 0.4rem .2rem aquamarine;
+  box-shadow: 0 0 0.4rem 0.2rem aquamarine;
   aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
@@ -148,7 +146,6 @@ body {
   background-color: aquamarine;
 }
 
-
 .App footer {
   display: flex;
   place-items: center;
@@ -161,14 +158,15 @@ body {
   color: rgba(255, 255, 255, 0.87);
   width: 128px;
   border-radius: 5px;
-  transition: 0.25s color, 0.25s background;
+  transition:
+    0.25s color,
+    0.25s background;
   font-weight: bold;
 }
 
 .App footer button:hover {
   background: rgba(255, 255, 255, 0.87);
   color: #1a1a1a;
-;
 }
 
 .App footer p {

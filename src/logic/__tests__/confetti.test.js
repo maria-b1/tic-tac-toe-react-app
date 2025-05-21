@@ -1,6 +1,6 @@
 /**
  * confetti.test.js
- * 
+ *
  * Basic tests for confetti.js functions.
  * Since confetti is visual/animation-based, we test that functions are callable
  * and interact correctly with the confetti library.
@@ -22,7 +22,10 @@ describe('confetti.js', () => {
   test('createConfetti calls confetti function multiple times', () => {
     jest.useFakeTimers() // use fake timers to control setTimeout / requestAnimationFrame
 
-    confettiModule.createConfetti({ during: 100, disableForReducedMotion: false })
+    confettiModule.createConfetti({
+      during: 100,
+      disableForReducedMotion: false
+    })
 
     // Fast-forward all timers to trigger the animation frames
     jest.advanceTimersByTime(150)
@@ -34,7 +37,10 @@ describe('confetti.js', () => {
   })
 
   test('createConfetti respects disableForReducedMotion', () => {
-    confettiModule.createConfetti({ during: 100, disableForReducedMotion: true })
+    confettiModule.createConfetti({
+      during: 100,
+      disableForReducedMotion: true
+    })
 
     // When reduced motion is disabled, confetti should still be called once but not animate repeatedly
     expect(confetti).toHaveBeenCalled()

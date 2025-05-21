@@ -12,6 +12,6 @@ module.exports = {
 
   // Transforms JavaScript and JSX files using Babel before running tests
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-  },
-};
+    '^.+\\.jsx?$': 'babel-jest'
+  }
+}
