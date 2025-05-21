@@ -1,0 +1,10 @@
+{
+  // This tells Babel to transform modern JavaScript (ES6+) 
+  // into code that works in older browsers
+  "presets": ["@babel/preset-env", 
+    // This preset allows Babel to understand and transform React JSX syntax
+    "@babel/preset-react"
+  ]
+}
+//Babel converts your modern or React code into older JavaScript code 
+//that every browser can run smoothly.

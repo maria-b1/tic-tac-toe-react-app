@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import React from 'react';
+
 
 export const BoardTile = ({ value, index, action, highlight }) => {
   const className = `tile${highlight ? ' is-hl' : ''}`

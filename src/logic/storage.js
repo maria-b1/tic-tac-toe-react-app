@@ -18,7 +18,9 @@ function loader(key) {
     const item = window.localStorage.getItem(key)
     try {
       if (item) return validator(JSON.parse(item))
-    } catch (e) {}
+    } catch (e) {
+    // ignore JSON parsing errors or invalid data in storage
+  }
     return fallbackSupplier()
   }
 }
