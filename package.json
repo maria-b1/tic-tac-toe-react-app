@@ -12,7 +12,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
-    "test": "jest"
+    "test": "jest",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "dependencies": {
     "canvas-confetti": "1.6.0",
