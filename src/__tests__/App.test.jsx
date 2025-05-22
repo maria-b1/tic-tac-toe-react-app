@@ -54,7 +54,8 @@ describe('Tic-Tac-Toe App', () => {
     const resetButton = screen.getByText('Reset')
     fireEvent.click(resetButton)
 
-    // Board should be empty again
+    // Board should be empty againn
+        // Board should be empty againn
     tiles.forEach((tile) => {
       expect(tile.textContent).toBe('')
     })
