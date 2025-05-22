@@ -97,7 +97,7 @@ function App() {
         <button onClick={handleReset}>Reset</button>
         {winner === null && (
           <p>
-            <span>{turn}</span>'s turn
+            <span>{turn}</span>s turn
           </p>
         )}
         {winner === false && <p>TIE!</p>}
