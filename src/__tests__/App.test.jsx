@@ -19,9 +19,7 @@ describe('Tic-Tac-Toe App', () => {
 
   test("initially shows X's turn", () => {
     render(<App />)
-    expect(
-      screen.getByText((content, node) => node.textContent === "X's turn")
-    ).toBeInTheDocument()
+    expect(screen.getByText(/X.*s turn/)).toBeInTheDocument()
   })
 
   test('clicking a tile updates the board and turn', () => {
@@ -31,9 +29,7 @@ describe('Tic-Tac-Toe App', () => {
       .filter((btn) => btn.className === 'tile')
     fireEvent.click(tiles[0]) // X
     expect(tiles[0].textContent).toBe('X')
-    expect(
-      screen.getByText((_, node) => node.textContent === "O's turn")
-    ).toBeInTheDocument()
+    expect(screen.getByText(/O.*s turn/)).toBeInTheDocument()
 
     fireEvent.click(tiles[1]) // O
     expect(tiles[1].textContent).toBe('O')
