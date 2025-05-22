@@ -1,9 +1,7 @@
 // Import the functions to test from the storage module
 import {
   saveGameToStorage,
-  resetGameStorage,
-  loadBoardFromStorage,
-  loadTurnFromStorage
+  resetGameStorage
 } from '../storage'
 
 describe('LocalStorage game data', () => {
