@@ -62,7 +62,7 @@ describe('Tic-Tac-Toe App', () => {
 
     // Turn should be back to X
     expect(
-      screen.getByText((_, node) => node.textContent === "X's turn")
+      screen.getByText((_, node) => node.textContent === "Xs turn")
     ).toBeInTheDocument()
   })
 })
