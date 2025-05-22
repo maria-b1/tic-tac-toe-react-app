@@ -19,7 +19,7 @@ describe('Tic-Tac-Toe App', () => {
 
   test("initially shows X's turn", () => {
     render(<App />)
-    expect(screen.getByText(/X.*s turn/)).toBeInTheDocument()
+    expect(screen.getByTestId('turn-indicator')).toHaveTextContent("X's turn")
   })
 
   test('clicking a tile updates the board and turn', () => {
@@ -29,13 +29,11 @@ describe('Tic-Tac-Toe App', () => {
       .filter((btn) => btn.className === 'tile')
     fireEvent.click(tiles[0]) // X
     expect(tiles[0].textContent).toBe('X')
-    expect(screen.getByText(/O.*s turn/)).toBeInTheDocument()
+    expect(screen.getByTestId('turn-indicator')).toHaveTextContent("O's turn")
 
     fireEvent.click(tiles[1]) // O
     expect(tiles[1].textContent).toBe('O')
-    expect(
-      screen.getByText((_, node) => node.textContent === "X's turn")
-    ).toBeInTheDocument()
+    expect(screen.getByTestId('turn-indicator')).toHaveTextContent("X's turn")
   })
 
   test('reset button clears the board and winner', () => {
@@ -50,15 +48,10 @@ describe('Tic-Tac-Toe App', () => {
     const resetButton = screen.getByText('Reset')
     fireEvent.click(resetButton)
 
-    // Board should be empty againn
-    // Board should be empty againn
     tiles.forEach((tile) => {
       expect(tile.textContent).toBe('')
     })
 
-    // Turn should be back to X
-    expect(
-      screen.getByText((_, node) => node.textContent === 'Xs turn')
-    ).toBeInTheDocument()
+    expect(screen.getByTestId('turn-indicator')).toHaveTextContent("X's turn")
   })
 })

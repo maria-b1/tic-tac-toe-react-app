@@ -27,7 +27,6 @@ function App() {
     loadTurnFromStorage(validateTurn, provideDefaultTurn)
   )
 
-  // null => no winner yet, false => tie, or X-O if some turn won
   const [winner, setWinner] = useState(null)
   const [winnerCombo, setWinnerCombo] = useState(null)
 
@@ -60,7 +59,6 @@ function App() {
     })
   }
 
-  // sync computed values when board state changes
   useEffect(() => {
     const [newWinner, newWinnerCombo] = checkWinnerFrom(board)
     if (newWinner !== null) {
@@ -68,7 +66,7 @@ function App() {
       setWinner(newWinner)
       setWinnerCombo(newWinnerCombo)
     } else if (checkEndGame(board)) {
-      setWinner(false) // tie
+      setWinner(false)
     }
   }, [board])
 
@@ -96,16 +94,10 @@ function App() {
       <footer>
         <button onClick={handleReset}>Reset</button>
         {winner === null && (
-          <p>
-            <span>{turn}</span>s turn
-          </p>
+          <p data-testid="turn-indicator">{turn}'s turn</p>
         )}
         {winner === false && <p>TIE!</p>}
-        {winner && (
-          <p>
-            <span>{winner}</span> won!
-          </p>
-        )}
+        {winner && <p><span>{winner}</span> won!</p>}
       </footer>
     </main>
   )
