@@ -1,8 +1,5 @@
 // Import the functions to test from the storage module
-import {
-  saveGameToStorage,
-  resetGameStorage
-} from '../storage'
+import { saveGameToStorage, resetGameStorage } from '../storage'
 
 describe('LocalStorage game data', () => {
   // Clear localStorage before each test to avoid data interference
