@@ -29,7 +29,7 @@ jobs:
       - name: Install & Test
         run: |
           npm install
-          npm test -- --exit
+          run: npm test -- --watchAll=false --ci
 
       # 4️⃣ Set up Docker Buildx
       - name: Set up Docker Buildx
