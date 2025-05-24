@@ -27,7 +27,7 @@ jobs:
 
       # 3️⃣ Install dependencies & run tests
       - name: Install & Test
-        run: |
+        run:
           npm install
           run: npm test -- --watchAll=false --ci
 
