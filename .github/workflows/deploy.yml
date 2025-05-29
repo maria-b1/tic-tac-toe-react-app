@@ -23,7 +23,8 @@ jobs:
         run: npm ci
 
       - name: Build Project
-        run: npm run build
+        run: VITE_ROOT_PAGES=true npm run build
+
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
