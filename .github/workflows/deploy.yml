@@ -34,4 +34,4 @@ jobs:
 
       - name: Deploy to S3 using AWS CLI
         run: |
-          aws s3 sync ./dist s3://tic-tac-toe-react-mariab --delete --acl public-read
+          aws s3 sync ./dist s3://tic-tac-toe-react-mariab --delete
