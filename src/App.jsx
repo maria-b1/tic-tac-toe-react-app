@@ -1,7 +1,5 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-
-// Game logic utilities
 import {
   checkEndGame,
   checkWinnerFrom,
@@ -11,37 +9,27 @@ import {
   validateBoard,
   validateTurn
 } from './logic/board'
-
-// Confetti animations
 import { createConfetti, resetConfetti } from './logic/confetti'
-
-// LocalStorage helpers
 import {
   loadBoardFromStorage,
   loadTurnFromStorage,
   resetGameStorage,
   saveGameToStorage
 } from './logic/storage'
-
-// Board tile UI component
 import { BoardTile } from './components/BoardTile'
 
 function App() {
-  // Load board from storage or initialize
   const [board, setBoard] = useState(
     loadBoardFromStorage(validateBoard, provideInitialArray)
   )
 
-  // Load current turn or set default
   const [turn, setTurn] = useState(
     loadTurnFromStorage(validateTurn, provideDefaultTurn)
   )
 
-  // State for winner and winning combo
   const [winner, setWinner] = useState(null)
   const [winnerCombo, setWinnerCombo] = useState(null)
 
-  // Reset game state
   const handleReset = () => {
     setBoard(provideInitialArray)
     setTurn(provideDefaultTurn)
@@ -51,10 +39,8 @@ function App() {
     resetGameStorage()
   }
 
-  // Prevent move if tile filled or game is over
   const canBoardBeUpdated = (index) => board[index] === null && winner === null
 
-  // Update a board tile with new value
   const updateBoardTile = (index, value) => {
     const newBoard = [...board]
     newBoard[index] = value
@@ -62,31 +48,25 @@ function App() {
     return newBoard
   }
 
-  // Main click handler for board tiles
   const onBoardTileAction = (index) => {
     if (!canBoardBeUpdated(index)) return
-
     const newBoard = updateBoardTile(index, turn)
     const newTurn = nextTurn(turn)
     setTurn(newTurn)
-
-    // Save current board and turn to localStorage
     saveGameToStorage({
       board: newBoard,
       turn: newTurn
     })
   }
 
-  // Watch board for win/tie updates
   useEffect(() => {
     const [newWinner, newWinnerCombo] = checkWinnerFrom(board)
-
     if (newWinner !== null) {
       createConfetti()
       setWinner(newWinner)
       setWinnerCombo(newWinnerCombo)
     } else if (checkEndGame(board)) {
-      setWinner(false) // Indicates a tie
+      setWinner(false)
     }
   }, [board])
 
@@ -100,7 +80,6 @@ function App() {
           </h1>
         </a>
       </header>
-
       <section className="board">
         {board.map((value, index) => (
           <BoardTile
@@ -108,20 +87,19 @@ function App() {
             value={value}
             action={onBoardTileAction}
             index={index}
-            highlight={winnerCombo?.includes(index)} // Highlights winning tiles
+            highlight={winnerCombo?.includes(index)}
           />
         ))}
       </section>
-
       <footer>
         <button onClick={handleReset}>Reset</button>
         {winner === null && (
-          <p data-testid="turn-indicator">{turn}&apos;s turn</p> // Show turn
+          <p data-testid="turn-indicator">{turn}&apos;s turn</p>
         )}
-        {winner === false && <p>TIE!</p>} // Show tie
+        {winner === false && <p>TIE!</p>}
         {winner && (
           <p>
-            <span>{winner}</span> won! // Show winner
+            <span>{winner}</span> won!
           </p>
         )}
       </footer>
