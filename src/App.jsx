@@ -115,7 +115,6 @@ function App() {
 
       <footer>
         <button onClick={handleReset}>Reset</button>
-
         {winner === null && (
           <p data-testid="turn-indicator">{turn}&apos;s turn</p> // Show turn
         )}
