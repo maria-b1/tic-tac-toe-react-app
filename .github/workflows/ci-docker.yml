@@ -1,45 +1,45 @@
-name: ci-node-docker  
+name: ci-node-docker
 
 on:
   push:
-    branches: [main]  
+    branches: [main]
   pull_request:
-    branches: [main]  
-  workflow_dispatch:   
+    branches: [main]
+  workflow_dispatch:
 
 env:
-  IMAGE_NAME: tic-tac-toe-react-app  # Set a global environment variable for the Docker image name
+  IMAGE_NAME: tic-tac-toe-react-app
 
 jobs:
   build-test-push:
-    runs-on: ubuntu-latest  # Run this job on the latest version of Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4  # Pull the latest code from the repo into the runner
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4  # Set up a Node.js environment
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'  
+          node-version: '18'
 
       - name: Install dependencies and run tests
         run: |
-          npm install  # Install project dependencies defined in package.json
-          npm test -- --watchAll=false --ci  # Run tests in CI mode (no watch)
+          npm install
+          npm test -- --watchAll=false --ci
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3  # Enable advanced Docker build features (multi-platform, caching)
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v3  
+        uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}  # Docker Hub username (stored in GitHub Secrets)
-          password: ${{ secrets.DOCKERHUB_TOKEN }} 
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5  # Build the Docker image and push it to Docker Hub
+        uses: docker/build-push-action@v5
         with:
-          context: .  # Use the current directory as the Docker build context
-          push: true  # Push the image to Docker Hub
-          tags: mariab01/tic-tac-toe-react-app:latest  # Tag the image with 'latest' under the Docker Hub repo
+          context: .
+          push: true
+          tags: mariab01/tic-tac-toe-react-app:latest
